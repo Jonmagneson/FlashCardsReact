@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Table, Card, } from "semantic-ui-react";
+import Toggle from "./Toggle"
 
 const FlashCard = ({ id, cardFront, cardBack, remove }) => (
   // <Table.Row>
@@ -10,24 +11,25 @@ const FlashCard = ({ id, cardFront, cardBack, remove }) => (
   //   </Table.Cell>
   // </Table.Row>
 
+
   <Card.Group>
     <Card>
       <Card.Content>
         {cardFront}
-        <Card.Description>
-          <hr />
-          {cardBack}
-        </Card.Description>
+        <hr />
       </Card.Content>
-      <Button.Group>
-      <Button color="instagram" onClick={Toggle}>Show</Button>
-      <Button color="olive">Edit</Button>
-      <Button color="black" onClick={() => remove(id)}>Delete</Button>  
+      <Button.Group size="tiny">
+        <Toggle>
+          <Card.Content>
+            <h3>{cardBack}</h3>
+          </Card.Content>
+          <hr />
+          <Button color="blue">Edit</Button>
+          <Button color="black" onClick={() => remove(id)}>Delete</Button>  
+        </Toggle>
       </Button.Group>
     </Card>
   </Card.Group>
 )
-{/* <Button icon color="blue" onClick={this.toggleForm}>
-          <Icon name={`angle double ${showForm ? "up" : "down"}`} />
-        </Button> */}
+
 export default FlashCard;

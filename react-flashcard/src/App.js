@@ -28,29 +28,26 @@ class App extends React.Component {
     this.setState({ flashCards: [...remaining]})
   };
 
-  toggleForm = () => this.setState({ showForm: !this.state.showForm, });
+  toggleForm = () => this.setState({ showForm: ! this.state.showForm, });
 
 
   render() {
-    const {showForm, } = this.state
+    const { showForm, } = this.state
     return (
       <Container textAlign="center" style={{ paddingTop: "25px"}}>
         <Header as="h1">React FlashCards </Header>
         <br />
         
         
-        <Button icon color="blue" onClick={this.toggleForm}>
-          <Icon name={`angle double ${showForm ? "up" : "down"}`} />
-        </Button>
-        { showForm ? <FlashForm addCard={this.addCard} /> : null }
-        
-        
-        
-        <br />
         <FlashCards 
           flashCards={this.state.flashCards} 
           remove={this.removeCard} 
         />
+        <Button icon color="blue" onClick={this.toggleForm}><p>new card</p>
+          <Icon name={`angle double ${showForm ? "up" : "down"}`} />
+        </Button>
+        { showForm ? <FlashForm addCard={this.addCard} /> : null }           
+        <br />
       </Container>
     );
   }

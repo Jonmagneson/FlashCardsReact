@@ -1,24 +1,20 @@
 import React from "react";
 import FlashCard from "./FlashCard"
-import { Button, Table, } from "semantic-ui-react";
+import { Table, } from "semantic-ui-react";
+
 
 const FlashCards = ({ flashCards, remove }) => (
-  <Table celled padded>
+  <Table color="green">
     <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Front</Table.HeaderCell>
-        <Table.HeaderCell>Back</Table.HeaderCell>
-        <Table.HeaderCell>Options</Table.HeaderCell>
-      </Table.Row>
+      <h1>"Let's Flash Some Cars! (I mean cards...)"</h1>
     </Table.Header>
-
+      <br />
     <Table.Body>
       {
         flashCards.map( (flashcard, index) => (
           <FlashCard key={index} {...flashcard} remove={remove}/>
           //                    ...speads out contacts to (id) (name) (phone) in seperated objects
         ))
-
       }
     </Table.Body>
   </Table>
