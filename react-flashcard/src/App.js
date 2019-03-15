@@ -1,56 +1,22 @@
-import React from 'react';
-import FlashForm from "./FlashForm";
-import FlashCards from "./FlashCards"
-import { Container, Header, Button, Icon } from "semantic-ui-react"; 
+import React, {Fragment} from 'react';
+import { Route, Switch} from 'react-router-dom';
+import Home from './components/Home';
+import About from "./components/About"
+import NoMatch from "./components/NoMatch"
+import Navbar from "./components/NavBar"
+import {Container} from 'semantic-ui-react'
 
-
-class App extends React.Component {
-  state = {
-    flashCards: [
-      { id: 1, cardFront: "FRONT", cardBack: "BACK"},
-      { id: 2, cardFront: "Face", cardBack: "Butt"},
-    ],
-    showForm: false,
-  }
-
-  getId = () => Math.floor((1 + Math.random()) * 10000);
-  
-  addCard = (cardInfo) => {
-    let flashcard = { id: this.getId(), ...cardInfo, };
-    this.setState({ flashCards: [...this.state.flashCards, flashcard], });
-  };
-
-  removeCard = (id) => {
-    let {flashCards} = this.state
-    const remaining = flashCards.filter( flashCards => {
-      return (flashCards.id !== id)
-    })
-    this.setState({ flashCards: [...remaining]})
-  };
-
-  toggleForm = () => this.setState({ showForm: ! this.state.showForm, });
-
-
-  render() {
-    const { showForm, } = this.state
-    return (
-      <Container textAlign="center" style={{ paddingTop: "25px"}}>
-        <Header as="h1">React FlashCards </Header>
-        <br />
-        
-        
-        <FlashCards 
-          flashCards={this.state.flashCards} 
-          remove={this.removeCard} 
-        />
-        <Button icon color="blue" onClick={this.toggleForm}><p>new card</p>
-          <Icon name={`angle double ${showForm ? "up" : "down"}`} />
-        </Button>
-        { showForm ? <FlashForm addCard={this.addCard} /> : null }           
-        <br />
-      </Container>
-    );
-  }
-}
+const App = () => (
+  <Fragment>
+    <Navbar />
+    <Container>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route component={NoMatch} />
+      </Switch>
+    </Container>
+  </Fragment>
+  )
 
 export default App;
